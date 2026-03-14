@@ -30,6 +30,12 @@ func main() {
 		MaxAge: 300,
 	}))
 
+	routerV2 := chi.NewRouter()
+
+	routerV2.Get("/health", handlerReadiness) // to handle only get request, use the get method instead of the handleFunc method
+
+	router.Mount("/v1", routerV2)
+
 	svr := &http.Server{
 		Handler: router,
 		Addr: ":" + portString,

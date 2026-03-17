@@ -11,7 +11,6 @@ import (
 )
 
 func main() {
-	fmt.Println("Lets get the backend running")
 
 	godotenv.Load(".env")
 
@@ -33,7 +32,7 @@ func main() {
 	routerV2 := chi.NewRouter()
 
 	routerV2.Get("/health", handlerReadiness) // to handle only get request, use the get method instead of the handleFunc method
-
+	routerV2.Get("/err", handlerErrors)
 	router.Mount("/v1", routerV2)
 
 	svr := &http.Server{
